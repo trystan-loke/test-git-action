@@ -25,10 +25,11 @@ jobs:
         npm install
         npm run build
         
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: artifact
         path: dist
+        retention-days: 2
   
   deploy:
     runs-on: ubuntu-latest
@@ -36,9 +37,10 @@ jobs:
     environment: development
     
     steps:
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v3
       with:
         name: artifact
+        path: dist
         
     - name: Sync with S3
       uses: jakejarvis/s3-sync-action@master
