@@ -34,11 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: development
     
-    steps:
-    - uses: actions/download-artifact@v2
-      with:
-        name: my-artifact
-        
+    steps:      
     - name: Sync with S3
       uses: jakejarvis/s3-sync-action@master
       with:
